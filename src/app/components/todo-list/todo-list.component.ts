@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/app/interfaces/todo';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css'],
@@ -22,12 +23,12 @@ import { Todo } from 'src/app/interfaces/todo';
 export class TodoListComponent implements OnInit {
 
   todos: Todo[] = [];
-  todoTitle: string = '';
-  idForTodo: number = 0;
-  beforeEditCache: string = '';
-  filter: string = '';
+  todoTitle = '';
+  idForTodo = 0;
+  beforeEditCache = '';
+  filter = '';
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -37,28 +38,28 @@ export class TodoListComponent implements OnInit {
     this.todoTitle = '';
     this.todos = [
       {
-        'id': 1,
-        'title': 'Finish my homework',
-        'completed': false,
-        'editing': false
+        id: 1,
+        title: 'Finish my homework',
+        completed: false,
+        editing: false
       },
       {
-        'id': 2,
-        'title': 'Wash the dishes',
-        'completed': false,
-        'editing': false
+        id: 2,
+        title: 'Wash the dishes',
+        completed: false,
+        editing: false
       },
       {
-        'id': 3,
-        'title': 'Clean the living room',
-        'completed': false,
-        'editing': false
+        id: 3,
+        title: 'Clean the living room',
+        completed: false,
+        editing: false
       },
     ];
   }
 
   addTodo(): void {
-    if(this.todoTitle.trim().length === 0){
+    if (this.todoTitle.trim().length === 0){
       return;
     }
     this.todos.push({
@@ -66,7 +67,7 @@ export class TodoListComponent implements OnInit {
       title: this.todoTitle,
       completed: false,
       editing: false
-    })
+    });
 
     this.todoTitle = '';
     this.idForTodo++;
@@ -78,7 +79,7 @@ export class TodoListComponent implements OnInit {
   }
 
   doneEdit(todo: Todo): void {
-    if(todo.title.trim().length === 0){
+    if (todo.title.trim().length === 0){
       todo.title = this.beforeEditCache;
     }
     todo.editing = false;
@@ -106,21 +107,23 @@ export class TodoListComponent implements OnInit {
     this.todos = this.todos.filter(todo => !todo.completed);
   }
 
+
   checkAllTodos(): void {
-    this.todos.forEach(todo => todo.completed = 
-      (<HTMLInputElement>event.target).checked);
+    // @ts-ignore
+    const checkboxes = event.target as HTMLInputElement;
+    this.todos.forEach(todo => todo.completed = checkboxes.checked);
   }
 
   todosFiltered(): Todo[] {
-    if(this.filter === 'all'){
+    if (this.filter === 'all'){
       return this.todos;
-    }else if(this.filter === 'active'){
+    }else if (this.filter === 'active'){
       return this.todos.filter(todo => !todo.completed);
-    }else if(this.filter === 'completed'){
+    }else if (this.filter === 'completed'){
       return this.todos.filter(todo => todo.completed);
     }
     return this.todos;
   }
-  
+
 }
 

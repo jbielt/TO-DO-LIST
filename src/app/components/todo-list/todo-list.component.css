@@ -5,7 +5,7 @@
     margin-bottom: 16px;
 }
 
-
+/*
 .todo-item {
     margin-bottom: 12px;
     display: flex;
@@ -39,12 +39,14 @@
     border: 1px solid #ccc;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
-  
+
 .completed {
     text-decoration: line-through;
     color: grey;
 }
-  
+
+ */
+
 .extra-container {
     display: flex;
     align-items: center;
@@ -54,22 +56,22 @@
     padding-top: 14px;
     margin-bottom: 14px;
 }
-  
+
 button {
     font-size: 14px;
     background-color: white;
     appearance: none;
 }
-  
+
 .active {
     background: lightgreen;
 }
-  
+
 /* CSS Transitions */
 .fade-enter-active, .fade-leave-active {
     transition: opacity .2s;
 }
-  
+
 .fade-enter, .fade-leave-to {
     opacity: 0;
 }
