@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Todo} from '../../interfaces/todo';
+import {TodoService} from '../../services/todo.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -9,6 +10,7 @@ import {Todo} from '../../interfaces/todo';
 })
 export class TodoItemComponent implements OnInit {
   @Input() todo: Todo | undefined;
+  /*
   @Output() checkedItem = new EventEmitter();
   @Output() doubleClickedItem = new EventEmitter();
   // @Output() blurredItem = new EventEmitter();
@@ -16,12 +18,16 @@ export class TodoItemComponent implements OnInit {
   @Output() cancelledItem = new EventEmitter();
   @Output() deletedItem = new EventEmitter();
 
+  // Al crear un servei no necessitem els events @Output
+   */
 
-  constructor() { }
+
+  constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
   }
 
+  /* // no necessitem els metodes dels events tampoc.
   doneEdit(todo: Todo): void {
     this.checkedItem.emit(todo);
   }
@@ -37,5 +43,5 @@ export class TodoItemComponent implements OnInit {
   deleteTodo(id: number): void {
     this.deletedItem.emit(id);
   }
-
+   */
 }

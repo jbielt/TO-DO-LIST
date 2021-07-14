@@ -1,48 +1,60 @@
-import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Todo } from 'src/app/interfaces/todo';
-import {TodoService} from '../../services/todo.service';
 
-@Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'todo-list',
-  templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css'],
-  providers: [TodoService],
-  animations: [
-    trigger('fade', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(30px)'}),
-        animate(1000, style({opacity: 1, transform: 'translateY(0px)'}))
-      ]),
-      transition(':enter', [
-        animate(1000, style({opacity: 1, transform: 'translateY(30px)'}))
-      ])
-    ])
 
-  ]
+@Injectable({
+  providedIn: 'root'
 })
-export class TodoListComponent implements OnInit {
-  todoTitle = '';
-  // private todoService: TodoService; //we do it at the constructor
+export class TodoService {
+  todoTitle: string;
+  idForTodo: number;
+  beforeEditCache: string;
+  filter: string;
+  anyRemainingModel: boolean;
+  todos: Todo[];
 
-  constructor(private todoService: TodoService) {
-    // this.todoService = todoService;
-  }
 
-  ngOnInit(): void {
+  constructor() {
     this.todoTitle = '';
+    this.idForTodo = 4;
+    this.beforeEditCache = '';
+    this.filter = 'all';
+    this.anyRemainingModel = true;
+    this.todos = [
+      {
+        id: 1,
+        title: 'Finish my homework',
+        completed: false,
+        editing: false
+      },
+      {
+        id: 2,
+        title: 'Wash the dishes',
+        completed: false,
+        editing: false
+      },
+      {
+        id: 3,
+        title: 'Clean the living room',
+        completed: false,
+        editing: false
+      },
+    ];
   }
 
-
-  addTodo(): void {
-    if (this.todoTitle.trim().length === 0){
+  addTodo(todoTitle: string): void {
+    if (todoTitle.trim().length === 0){
       return;
     }
-    this.todoService.addTodo(this.todoTitle);
-    this.todoTitle = '';
+    this.todos.push({
+      id: this.idForTodo,
+      title: todoTitle,
+      completed: false,
+      editing: false
+    });
+    this.idForTodo++;
   }
-  /*
+
   editTodo(todo: Todo): void {
     this.beforeEditCache = todo.title;
     todo.editing = true;
@@ -94,8 +106,4 @@ export class TodoListComponent implements OnInit {
     }
     return this.todos;
   }
-
-   */
-
 }
-
