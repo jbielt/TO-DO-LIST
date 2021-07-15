@@ -18,8 +18,9 @@ export class TodoService {
     this.todoTitle = '';
     this.idForTodo = 4;
     this.beforeEditCache = '';
+    // filtre actiu per defecte
     this.filter = 'all';
-    this.anyRemainingModel = true;
+    this.anyRemainingModel = false;
     this.todos = [
       {
         id: 1,
@@ -82,7 +83,7 @@ export class TodoService {
   }
 
   atLeastOneCompleted(): boolean {
-    return this.todos.filter(todo => !todo.completed).length > 0;
+    return this.todos.filter(todo => todo.completed).length > 0;
   }
 
   clearCompleted(): void {
@@ -92,8 +93,8 @@ export class TodoService {
 
   checkAllTodos(): void {
     // @ts-ignore
-    const checkboxes = event.target as HTMLInputElement;
-    this.todos.forEach(todo => todo.completed = checkboxes.checked);
+    this.todos.forEach(todo => todo.completed = (event.target as HTMLInputElement).checked);
+    // el checked no funciona bé, revisar.
   }
 
   todosFiltered(): Todo[] {

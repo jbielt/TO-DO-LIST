@@ -9,7 +9,8 @@ import {TodoService} from '../../services/todo.service';
   styleUrls: ['./todo-item.component.css']
 })
 export class TodoItemComponent implements OnInit {
-  @Input() todo: Todo | undefined;
+  // Tells compiler this property will not be unassigned (!)
+  @Input() todo!: Todo;
   /*
   @Output() checkedItem = new EventEmitter();
   @Output() doubleClickedItem = new EventEmitter();
@@ -22,7 +23,8 @@ export class TodoItemComponent implements OnInit {
    */
 
 
-  constructor(private todoService: TodoService) { }
+  constructor(public todoService: TodoService) {
+  }
 
   ngOnInit(): void {
   }

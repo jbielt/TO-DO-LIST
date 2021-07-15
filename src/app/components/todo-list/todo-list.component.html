@@ -1,10 +1,18 @@
 
-
+<!--
 <img class="logo" width="300" alt="logo" src="assets/images/todo.jpg">
+-->
 
-<input type="text" class="todo-input" placeholder="What needs to be done"
-    [(ngModel)]="todoTitle"
-    (keyup.enter)=addTodo()>
+
+<div class="mb-5 mt-4">
+  <span class="mb-0 h1">To Do List...</span>
+</div>
+
+<div class="input-group">
+  <input class="todo-input form-control py-2 rounded-pill shadow" type="text" placeholder="What needs to be done"
+         [(ngModel)]="todoTitle"
+         (keyup.enter)="addTodo()">
+</div>
 
 <todo-item
     *ngFor="let todo of todoService.todosFiltered()"
@@ -14,24 +22,26 @@
 
 <div class="extra-container">
     <div>
-        <label><input type="checkbox"
-                      (change)="todoService.checkAllTodos()"
-                      [(ngModel)]="!todoService.anyRemainingModel">Check all</label>
+        <label>
+          <input type="checkbox"
+            (change)="todoService.checkAllTodos()"
+            [(ngModel)]="todoService.anyRemainingModel">Check all
+        </label>
     </div>
     <div>{{ todoService.remaining() }} items left</div>
 </div>
 
 <div class="extra-container">
     <div>
-        <button [ngClass]="{'active': todoService.filter === 'all'}"
+        <button class="rounded-pill" [ngClass]="{'active': todoService.filter === 'all'}"
         (click)="todoService.filter='all'">All</button>
-        <button [ngClass]="{'active': todoService.filter === 'active'}"
+        <button class="rounded-pill" [ngClass]="{'active': todoService.filter === 'active'}"
         (click)="todoService.filter='active'">Active</button>
-        <button [ngClass]="{'active': todoService.filter === 'completed'}"
+        <button class="rounded-pill" [ngClass]="{'active': todoService.filter === 'completed'}"
         (click)="todoService.filter='completed'">Completed</button>
     </div>
     <div *ngIf="todoService.atLeastOneCompleted()">
-        <button (click)="todoService.clearCompleted()">Clear Completed</button>
+        <button class="rounded-pill" (click)="todoService.clearCompleted()">Clear Completed</button>
     </div>
 </div>
 
