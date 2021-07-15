@@ -1,5 +1,4 @@
 .todo-item {
-  margin-bottom: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,7 +16,7 @@
 }
 
 .todo-item-label{
-  padding: 18px;
+  padding: 5px;
   margin-left: 12px;
 }
 

@@ -1,15 +1,11 @@
 
-<!--
-<img class="logo" width="300" alt="logo" src="assets/images/todo.jpg">
--->
 
-
-<div class="mb-5 mt-4">
+<div class="mb-1 mt-1">
   <span class="mb-0 h1">To Do List...</span>
 </div>
 
 <div class="input-group">
-  <input class="todo-input form-control py-2 rounded-pill shadow" type="text" placeholder="What needs to be done"
+  <input class="todo-input form-control py-2 rounded-pill shadow" type="text" placeholder="What needs to be done?"
          [(ngModel)]="todoTitle"
          (keyup.enter)="addTodo()">
 </div>
@@ -20,24 +16,27 @@
 ></todo-item>
 
 
+
 <div class="extra-container">
+
     <div>
-        <label>
-          <input type="checkbox"
+      <label for="checkAll"></label>
+      <input class="check-all-input" type="checkbox" id="checkAll"
             (change)="todoService.checkAllTodos()"
             [(ngModel)]="todoService.anyRemainingModel">Check all
-        </label>
     </div>
     <div>{{ todoService.remaining() }} items left</div>
 </div>
 
+
+
 <div class="extra-container">
     <div>
-        <button class="rounded-pill" [ngClass]="{'active': todoService.filter === 'all'}"
+        <button class="btn-extra rounded-pill shadow-sm" [ngClass]="{'active': todoService.filter === 'all'}"
         (click)="todoService.filter='all'">All</button>
-        <button class="rounded-pill" [ngClass]="{'active': todoService.filter === 'active'}"
+        <button class="btn-extra rounded-pill shadow-sm" [ngClass]="{'active': todoService.filter === 'active'}"
         (click)="todoService.filter='active'">Active</button>
-        <button class="rounded-pill" [ngClass]="{'active': todoService.filter === 'completed'}"
+        <button class="btn-extra rounded-pill shadow-sm" [ngClass]="{'active': todoService.filter === 'completed'}"
         (click)="todoService.filter='completed'">Completed</button>
     </div>
     <div *ngIf="todoService.atLeastOneCompleted()">

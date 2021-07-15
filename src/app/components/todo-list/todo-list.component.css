@@ -1,9 +1,17 @@
+
 .todo-input {
     width: 100%;
     padding: 10px 18px;
     font-size: 18px;
     margin-bottom: 16px;
     border-color: gold;
+    transition: all .8s ease-in-out;
+}
+.todo-input:hover{
+  transform: scale(1.05);
+}
+.check-all-input {
+  margin-right: 16px;
 }
 
 .extra-container {
@@ -11,7 +19,8 @@
     align-items: center;
     justify-content: space-between;
     font-size: 16px;
-    border-top: 1px solid gold;
+    border-top: 4px solid gold;
+    border-radius: 3px;
     padding-top: 14px;
     margin-bottom: 14px;
 }
@@ -21,9 +30,12 @@ button {
     background-color: white;
     appearance: none;
     margin-left: 5px;
+    transition: all .6s ease-in-out;
 }
 button:hover {
+  cursor: pointer;
   background-color: gold;
+  transform: scale(1.1);
 }
 
 .active {
@@ -50,6 +62,8 @@ button:hover {
   left: 50%;
   transform: translateX(-50%);
 }
+
+
 
 
 
